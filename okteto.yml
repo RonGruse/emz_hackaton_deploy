@@ -2,3 +2,5 @@ build:
   api:
     context: .
     dockerfile: Dockerfile
+deploy:
+  - kubectl apply -f kubernetes
