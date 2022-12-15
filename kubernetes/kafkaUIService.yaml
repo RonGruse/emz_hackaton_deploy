@@ -21,12 +21,18 @@ spec:
         ports:
           - containerPort: 8080
         env:
-          KAFKA_CLUSTERS_0_NAME: local
-          KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka0:29092
-          KAFKA_CLUSTERS_0_METRICS_PORT: 9997
-          KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schemaregistry0:8085
-          KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: first
-          KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://kafka-connect0:8083
+          - name: KAFKA_CLUSTERS_0_NAME
+            value: local
+          - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
+            value: kafka0:29092
+          - name: KAFKA_CLUSTERS_0_METRICS_PORT
+            value: 9997
+          - name: KAFKA_CLUSTERS_0_SCHEMAREGISTRY
+            value: http://schemaregistry0:8085
+          - name: KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME
+            value: first
+          - name: KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS
+            value:   http://kafka-connect0:8083
 
 ---
 
