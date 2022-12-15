@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kafkaUI
+  name: kafkaui
   labels:
-    app: kafkaUI
+    app: kafkaui
 spec:
   selector:
     matchLabels:
-      app: kafkaUI
+      app: kafkaui
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: kafkaUI
+        app: kafkaui
     spec:
       containers:
-      - name: kafkaUI
+      - name: kafkaui
         image: provectuslabs/kafka-ui
         ports:
           - containerPort: 8080
@@ -42,6 +42,6 @@ metadata:
   name: kafkaui-service
 spec:
   selector:
-    app: kafkaUI
+    app: kafkaui
   ports:
     - port: 8080
