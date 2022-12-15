@@ -65,7 +65,7 @@ spec:
       - name: kafka-volume
         hostPath:
           # directory location on host
-          path: /scripts/
+          path: ../scripts/
           # this field is optional
           type: Directory
 

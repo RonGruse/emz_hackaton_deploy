@@ -39,7 +39,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: kafkaUI-service
+  name: kafkaui-service
 spec:
   selector:
     app: kafkaUI
