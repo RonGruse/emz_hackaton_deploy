@@ -17,20 +17,9 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: node:19.1.0-buster
-        command: ['/bin/bash', '-c', 'cd /mnt && npm install && npm run start']
-        volumeMounts:
-        # - mountPath: /mnt
-        #   name: frontend-volume
+        image: registry.cloud.okteto.net/rongruse/api:docker
         ports:
           - containerPort: 8080
-      # volumes:
-      # - name: portal-volume
-      #   hostPath:
-      #     # directory location on host
-      #     path: /Users/rongruse/Documents/emz_bewerbungsportal/services/portal
-      #     # this field is optional
-      #     type: Directory
 
 ---
 
