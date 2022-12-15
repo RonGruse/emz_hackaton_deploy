@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka
+  labels:
+    app: kafka
+spec:
+  selector:
+    matchLabels:
+      app: kafka
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka
+        image: confluentinc/cp-kafka:7.2.1
+        command: "bash -c 'if [ ! -f /mnt/update_run.sh ]; then echo \"ERROR: Did you forget the update_run.sh file that came with this docker-compose.yml file?\" && exit 1 ; else /mnt/update_run.sh && /etc/confluent/docker/run ; fi'"
+        volumeMounts:
+        - mountPath: /mnt
+          name: kafka-volume
+        ports:
+          - containerPort: 9997
+            name: metrics
+          - containerPort: 9092
+      volumes:
+      - name: portal-volume
+        hostPath:
+          # directory location on host
+          path: /scripts/
+          # this field is optional
+          type: Directory
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka-service
+spec:
+  selector:
+    app: kafka
+  ports:
+    - port: 9997
+    - port: 9092
