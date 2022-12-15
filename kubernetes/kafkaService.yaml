@@ -61,11 +61,12 @@ spec:
           - containerPort: 9997
             name: metrics
           - containerPort: 9092
+            name: kafka
       volumes:
       - name: kafka-volume
         hostPath:
           # directory location on host
-          path: ../scripts/
+          path: /scripts
           # this field is optional
           type: Directory
 
