@@ -81,4 +81,6 @@ spec:
     app: kafka
   ports:
     - port: 9997
+      name: metrics
     - port: 9092
+      name: kafka
