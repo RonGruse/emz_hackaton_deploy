@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: node:19.1.0-buster
+        command: ['/bin/bash', '-c', 'cd /mnt && npm install && npm run start']
+        volumeMounts:
+        # - mountPath: /mnt
+        #   name: frontend-volume
+        ports:
+          - containerPort: 8080
+      # volumes:
+      # - name: portal-volume
+      #   hostPath:
+      #     # directory location on host
+      #     path: /Users/rongruse/Documents/emz_bewerbungsportal/services/portal
+      #     # this field is optional
+      #     type: Directory
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 8080
